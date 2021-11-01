@@ -1,9 +1,31 @@
 ---
-title: "Resume"
+title: "My Resume"
 output: 
   html_document:
     toc: true
     toc_float: true
 ---
 
-## My Resume
+## Education
+
+I'm currently studying Biostatistics at [Columbia University Mailman School of Public Health](https://www.publichealth.columbia.edu), and I expect to graduate in May 2023. This semester, I registered in P8105, P6400, P8104, and P8130.
+
+My undergraduate study was finished at [Boston University](https://www.bu.edu) majoring in Statistics. I graduated in May 2021 with a Bachelor of Arts degree in Mathematics, and got a 3.98 GPA.
+
+
+## Academic Achievements
+
+In July 2018, I participated in Enterprise Survey for Innovation and Entrepreneurship in China as a group member, which was organized by Peking University. In this activity, I interviewed micro-enterprises owners in person of their scale and entrepreneurial process, collected data about the enterprises, and sorted out the data using excel and reported to the center of the organization to facilitate data analysis.
+
+
+## Internship Experience
+
+I was a math grader at Boston University from January 2020 to May 2021. I graded homework and exams of MA113 Elementary Statistics and MA581 Probability, collaborated with the courses' professors to set up the criteria of grading, and answered questions from students.
+
+I worked as an intern in the Department of Research Informatics, MSD R&D (China) Co., Ltd. from May to August 2019. The project I followed was The Analysis of Gene Differential Expression by Colon Cancer Data. I learned to use R to finish the assigned tasks, such as t-test and data standardization, to facilitate subsequent data analysis.
+
+
+For more information, please see the <a href="files/Resume_Wanxin Qi.pdf" download>attachment</a>.
+
+Go back to the [home](index.html) page.
+
