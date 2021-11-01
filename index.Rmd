@@ -8,3 +8,12 @@ output:
 
 ## Welcome to Wanxin's website
 
+Hello! I'm Wanxin Qi, a student from [p8105](https://www.p8105.com). This is my personal website. You could view my [resume](resume.html) and contact me via email, GitHub, and LinkedIn.
+
+
+## Something I'd like to share
+
+I'm living on campus. The scene outside my window is extremely beautiful:
+
+<img src="images/hudson_river.jpg" style="width:75%">
+
