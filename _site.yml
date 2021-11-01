@@ -1,0 +1,16 @@
+name: "Yay internet!"
+output_dir: "."
+navbar:
+  title: "Home"
+  right:
+    - text: "Resume"
+      href: resume.html
+    - icon: fa-envelope fa-lg
+      href: mailto:wq2161@cumc.columbia.edu
+    - icon: fa-github fa-lg
+      href: http://github.com/wq2161/
+    - icon: fab fa-linkedin
+      href: https://www.linkedin.com/in/wanxin-qi-a951611b9
+output:
+  html_document:
+    theme: cosmo
