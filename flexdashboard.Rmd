@@ -1,0 +1,101 @@
+---
+title: "Flexdashboard"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(tidyverse)
+library(p8105.datasets)
+library(plotly)
+```
+
+```{r data_import}
+data("ny_noaa")
+
+ny_noaa = ny_noaa %>%
+  janitor::clean_names() %>%
+  drop_na() %>%
+  filter(between(date, as.Date("2010-01-01"), as.Date("2010-12-31"))) %>%
+  filter(id %in% c("USW00094728", "USW00094789", "USW00014732")) %>%
+  mutate(
+    location = recode(id,
+                "USW00094728" = "CentralPark_NY",
+                "USW00094789" = "JFKAP_NY",
+                "USW00014732" = "LGAAP_NY"),
+    tmin = as.numeric(tmin) / 10,
+    tmax = as.numeric(tmax) / 10,
+    month = lubridate::month(date),
+    month = month.abb[month],
+    month = factor(month, levels = c(levels = c("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"), ordered = TRUE))
+  ) %>%
+  select(-id) %>%
+  relocate(location, date, month)
+```
+
+
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+### Scatterplot
+
+```{r ny_noaa_scatterplot}
+ny_noaa %>%
+  mutate(
+    text_label = str_c("Location: ", location, "\nPrecipitation: ", prcp)
+  ) %>%
+  plot_ly(
+    x = ~date, y = ~tmax, type = "scatter", mode = "markers", color = ~location, text = ~text_label, alpha = 0.5, colors = "viridis"
+  ) %>%
+  layout(title = "The Distribution of Max Temp in 2010",
+         xaxis = list(title = "Date",
+                      range = c(as.Date("2010-01-01"), as.Date("2010-12-31")),
+                      zeroline = FALSE),
+         yaxis = list(title = "Max Temp (C)",
+                      zeroline = FALSE))
+```
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+### Line plot
+
+```{r ny_noaa_lineplot}
+ny_noaa %>%
+  mutate(
+    text_label = str_c("Location: ", location, "\nPrecipitation: ", prcp)
+  ) %>%
+  plot_ly(
+    x = ~date, y = ~tmin, type = "scatter", mode = "lines", color = ~location, text = ~text_label, alpha = 0.7, colors = "viridis") %>%
+  layout(title = "The Distribution of Min Temp in 2010",
+         title = list(size = 20),
+         xaxis = list(title = "Date",
+                      range = c(as.Date("2010-01-01"), as.Date("2010-12-31")),
+                      zeroline = FALSE),
+         yaxis = list(title = "Mim Temp (C)",
+                      zeroline = FALSE))
+```
+
+### Bar plot
+
+```{r ny_noaa_barplot, message = FALSE}
+ny_noaa %>%
+  group_by(location, month) %>%
+  summarize(mean_tmax = mean(tmax)) %>%
+  plot_ly(
+    x = ~month, y = ~mean_tmax, color = ~location, type = "bar", alpha = 0.7, colors = "viridis") %>%
+  layout(title = "The Distribution of Average Max Temp in 2010",
+         title = list(size = 20),
+         xaxis = list(title = "Month",
+                      zeroline = FALSE),
+         yaxis = list(title = "Mean Max Temp (C)",
+                      zeroline = FALSE))
+```
+
+```{r, eval = FALSE}
+rmarkdown::render("flexdashboard.Rmd", output_format = "flexdashboard::flex_dashboard")
+```
+
