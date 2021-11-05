@@ -88,7 +88,6 @@ ny_noaa %>%
   plot_ly(
     x = ~month, y = ~mean_tmax, color = ~location, type = "bar", alpha = 0.7, colors = "viridis") %>%
   layout(title = "The Distribution of Average Max Temp Per Month in 2010",
-         titlefont = list(size = 15),
          font = list(size = 10),
          xaxis = list(title = "Month",
                       zeroline = FALSE),
