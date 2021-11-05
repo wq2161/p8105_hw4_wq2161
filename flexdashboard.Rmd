@@ -71,7 +71,7 @@ ny_noaa %>%
   plot_ly(
     x = ~date, y = ~tmin, type = "scatter", mode = "lines", color = ~location, text = ~text_label, alpha = 0.7, colors = "viridis") %>%
   layout(title = "The Distribution of Min Temp in 2010",
-         title = list(size = 20),
+         font = list(size = 10),
          xaxis = list(title = "Date",
                       range = c(as.Date("2010-01-01"), as.Date("2010-12-31")),
                       zeroline = FALSE),
@@ -81,14 +81,15 @@ ny_noaa %>%
 
 ### Bar plot
 
-```{r ny_noaa_barplot, message = FALSE}
+```{r ny_noaa_barplot, message = FALSE, warning = FALSE}
 ny_noaa %>%
   group_by(location, month) %>%
   summarize(mean_tmax = mean(tmax)) %>%
   plot_ly(
     x = ~month, y = ~mean_tmax, color = ~location, type = "bar", alpha = 0.7, colors = "viridis") %>%
-  layout(title = "The Distribution of Average Max Temp in 2010",
-         title = list(size = 20),
+  layout(title = "The Distribution of Average Max Temp Per Month in 2010",
+         titlefont = list(size = 15),
+         font = list(size = 10),
          xaxis = list(title = "Month",
                       zeroline = FALSE),
          yaxis = list(title = "Mean Max Temp (C)",
